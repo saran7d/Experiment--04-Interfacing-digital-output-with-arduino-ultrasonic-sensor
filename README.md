@@ -1,9 +1,9 @@
 # EXPERIMENT-NO--04-Distance measurement using Ultrasonic sensor
- ###  DATE: 
+ ###  DATE: 08.03.24
 
-###  NAME: 
-###  ROLL NO :
-###  DEPARTMENT:
+###  NAME: SARAN S S
+###  ROLL NO : 212221220048
+###  DEPARTMENT: Information Technology
 ## AIM: 
 To interface an ultrasonic pair and measure the distance in centimeters , calculate the error
  
@@ -60,45 +60,70 @@ speed of sound in the air at 20ºC (68ºF) = 343m/s
 
 ### PROGRAM 
 ```
+int echopin=6;
+int trigpin=7;
+int red=8;
+int green=9;
+long duration;
+float distance;
+void setup()
+{
+  pinMode(echopin,INPUT);
+  pinMode(trigpin,OUTPUT);
+  pinMode(red,OUTPUT);
+  pinMode(green,OUTPUT);
+  Serial.begin(9600);
+}
+void loop()
+{
+  digitalWrite(trigpin,LOW);
+  delay(10);
+  digitalWrite(trigpin,HIGH);
+  delay(10);
+  digitalWrite(trigpin,LOW);
+  duration=pulseIn(echopin,HIGH);
+  distance=duration*0.034/2;
+  Serial.print("Distance=");
+  Serial.print(distance);
+  Serial.println("cms");
+  if (distance<50)
+  {
+    digitalWrite(green, HIGH);
+    delay(500);
+    digitalWrite(green, LOW);
+    delay(500);
+  }
+  else
+  {
+    digitalWrite(red, HIGH);
+    delay(500);
+    digitalWrite(red, LOW);
+    delay(500);
+  }
+}
+```
+### OUTPUT:
+### When(distance<50)
+![image](https://github.com/saran7d/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/104412179/dd629ffd-475b-4bf2-9cd5-f859fa689a8e)
 
+### When(distance>50)
+![image](https://github.com/saran7d/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/104412179/09a744f4-4998-47cd-a475-f79cdeabff78)
 
-
-
-
-
-
-
-
-
-`````````
+### Graph:
+![image](https://github.com/saran7d/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/104412179/4e0c565e-9b89-47db-9334-1fe779ff0d75)
 
 
 ### Distance vs measurement table 
 
-			
- 
-			
-			
-			
-
 ![image](https://user-images.githubusercontent.com/36288975/190135379-52ebacd5-ccd5-460f-a4cd-4d0ad1d9b179.png)
-
-			
-			
-			
-			
-			
+	
 			Average error = sum/ number of readings 
- 
 
 
+### RESULTS:
+Thus the distance value is measured in "CM" using ultrasonic sensor
 
 
-
-
-
-
-### RESULTS
 
 
 
